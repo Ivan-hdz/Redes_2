@@ -1,0 +1,41 @@
+<mat-card >
+  <mat-card-header>
+    <mat-card-title>{{directory.name}}</mat-card-title>
+    <mat-card-subtitle>{{directory.path}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="dir-container">
+      <div class="row header">
+        <div>Nombre</div>
+        <div>Tamaño</div>
+        <div>Acciones</div>
+      </div>
+      <!-- Directories -->
+      <h3>Directorios</h3>
+      <div *ngFor="let dir of directory.directories; let i = index">
+        <div class="row elipse">
+          <div (dblclick)="onDbClickElem('dir_'+i)">
+          <input class="none" [id]="'dir_' + i"  (keyup.enter)="onSubmitElem('dir_'+i, file)" type="text" disabled value="{{dir.name}}">
+        </div>
+          <div >{{dir.size}}</div>
+          <div> <button mat-flat-button color="accent">Abrir</button></div>
+        </div>
+        <hr>
+      </div>
+      <h3>Archivos</h3>
+      <!-- Files -->
+      <div *ngFor="let file of directory.files; let i = index">
+        <div class="row elipse">
+          <div (dblclick)="onDbClickElem('file_'+i)">
+           <input type="text" [id]="'file_' + i" (keyup.enter)="onSubmitElem('file_'+i, file)" class="none" disabled value="{{file.name}}">
+          </div>
+          <div >{{file.size}}</div>
+          <div> <button mat-flat-button color="accent">Eliminar</button></div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>
