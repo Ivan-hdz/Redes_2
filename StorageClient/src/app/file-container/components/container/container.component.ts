@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Directory} from '../../classes/Directory';
 import {MyFile} from '../../classes/MyFile';
 
@@ -9,6 +9,9 @@ import {MyFile} from '../../classes/MyFile';
 })
 export class ContainerComponent implements OnInit {
   @Input('directory-object') directory: Directory;
+  @Output('fileToDelete') fileToDelete: EventEmitter<MyFile> = new EventEmitter<MyFile>();
+  @Output('dirToDelete') dirToDelete: EventEmitter<Directory> = new EventEmitter<Directory>();
+  @Output('onDirOpened') dirOpenedEmitter: EventEmitter<Directory> = new EventEmitter<Directory>();
   constructor() {
     if (this.directory == null) {
       this.directory = new Directory();
@@ -34,8 +37,14 @@ export class ContainerComponent implements OnInit {
       // Do directory things
     }
   }
-  alo() {
-    alert('alo');
+  onDirOpened(dir: Directory) {
+    this.dirOpenedEmitter.emit(dir);
+  }
+  onDeleteDir() {
+
+  }
+  onDeleteFile() {
+
   }
   ngOnInit() {
   }

@@ -1,0 +1,15 @@
+<div class="toolbox-container">
+
+  <div>
+    <app-container (onDirOpened)="actualDirectory = $event" [directory-object]="actualDirectory"></app-container>
+  </div>
+  <div class="toolbox">
+    <div  (click)="goBack()" class="my-btn ">
+      <mat-icon>arrow_upward</mat-icon>
+      <mat-icon>folder</mat-icon>
+    </div>
+    <div class="my-btn">
+      <mat-icon>cloud_upload</mat-icon>
+    </div>
+  </div>
+</div>
