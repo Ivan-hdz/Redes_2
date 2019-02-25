@@ -21,7 +21,9 @@
             <label>{{dir.size}}</label>
           </div>
           <div>
-            <button (click)="onDirOpened(dir)" mat-flat-button color="accent">Abrir</button>
+            <button (click)="onDirOpened(dir)" mat-flat-button color="primary">Abrir</button>
+            <button mat-flat-button color="accent">Descargar</button>
+            <button mat-flat-button color="warn">Eliminar</button>
           </div>
           <!-- Ro do , on delete file and direcotry -->
         </div>
@@ -35,7 +37,10 @@
            <input type="text" [id]="'file_' + i" (keyup.enter)="onSubmitElem('file_'+i, file)" class="none" disabled value="{{file.name}}">
           </div>
           <div >{{file.size}}</div>
-          <div> <button mat-flat-button color="accent">Eliminar</button></div>
+          <div>
+            <button mat-flat-button color="primary">Descargar</button>
+            <button mat-flat-button color="warn">Eliminar</button>
+          </div>
         </div>
         <hr>
       </div>
