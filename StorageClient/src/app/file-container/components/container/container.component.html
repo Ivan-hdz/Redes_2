@@ -1,7 +1,7 @@
 <mat-card >
   <mat-card-header>
-    <mat-card-title>Directorio actual</mat-card-title>
-    <mat-card-subtitle><mat-icon class="align-btn">folder_open</mat-icon>{{directory.name}}</mat-card-subtitle>
+    <mat-card-title>{{directory.name}}</mat-card-title>
+    <mat-card-subtitle><mat-icon class="align-btn">folder_open</mat-icon>{{directory.path}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div class="dir-container">
@@ -13,17 +13,16 @@
       <!-- Directories -->
       <h3>Directorios</h3>
       <div *ngFor="let dir of directory.directories; let i = index">
-        <div class="row elipse">
-          <div (dblclick)="onDbClickElem('dir_'+i)">
-            <input class="none" [id]="'dir_' + i"  (keyup.enter)="onSubmitElem('dir_'+i, file)" type="text" disabled value="{{dir.name}}">
+        <div  class="row elipse">
+          <div (focus)="onSubmitElem('file_'+i, file)"  (mouseenter)="onDbClickElem('dir_'+i)">
+            <input class="none" [id]="'dir_' + i"  (keyup.enter)="onSubmitElem('dir_'+i, dir)" type="text" disabled value="{{dir.name}}">
           </div>
-          <div >
+          <div (dblclick)="onDirOpened(dir)">
             <label>{{dir.size}}</label>
           </div>
           <div>
-            <button (click)="onDirOpened(dir)" mat-flat-button color="primary">Abrir</button>
             <button mat-flat-button color="accent">Descargar</button>
-            <button mat-flat-button color="warn">Eliminar</button>
+            <button mat-flat-button color="accent" (click)="onDeleteDir(dir)">Eliminar</button>
           </div>
           <!-- Ro do , on delete file and direcotry -->
         </div>
@@ -32,14 +31,14 @@
       <h3>Archivos</h3>
       <!-- Files -->
       <div *ngFor="let file of directory.files; let i = index">
-        <div class="row elipse">
-          <div (dblclick)="onDbClickElem('file_'+i)">
+        <div class="row elipse" >
+          <div (focus)="onSubmitElem('file_'+i, file)" (mouseenter)="onDbClickElem('file_'+i)">
            <input type="text" [id]="'file_' + i" (keyup.enter)="onSubmitElem('file_'+i, file)" class="none" disabled value="{{file.name}}">
           </div>
-          <div >{{file.size}}</div>
+          <div (dblclick)="getFile(file)">{{file.size}}</div>
           <div>
-            <button mat-flat-button color="primary">Descargar</button>
-            <button mat-flat-button color="warn">Eliminar</button>
+            <button mat-flat-button (click)="getFile(file)" color="accent">Descargar</button>
+            <button mat-flat-button (click)="onDeleteFile(file)" color="accent">Eliminar</button>
           </div>
         </div>
         <hr>

@@ -1,28 +1,32 @@
 import { Injectable } from '@angular/core';
 import {Directory} from '../classes/Directory';
 import {RESTService} from '../../shared/services/rest.service';
-import {Socket} from 'ngx-socket-io';
-
 @Injectable({
   providedIn: 'root'
 })
 export class FileService {
 
-  constructor(private rest: RESTService, private socket: Socket) { }
-  private uploadStatus = this.socket.fromEvent<boolean>('uploadStatus');
-  async rename(path: string, newName: string) {
-    return await this.rest.doPatch<boolean>('file', path, newName);
+  constructor(private rest: RESTService) {
   }
-  async delete(path: string) {
-    return await this.rest.doDelete<boolean>('file', path);
+  async rename(path2Send: string, newPath2Send: string) {
+    const toSend = {
+      path: path2Send,
+      newPath: newPath2Send
+    };
+    return await this.rest.doPatch<boolean>('file', toSend);
   }
-  async get(path: string) {
-    //DIEGO ESTUVO AQUI
-    return await this.rest.doGet<File>(path);
+  async delete(path2Send: string) {
+    const gson = {
+      path: path2Send
+    };
+    return  this.rest.doDelete<Directory>('file', gson);
   }
-  async upload(file: any) {
-    this.socket.emit('uploadFile', file);
-    const status = await this.uploadStatus.toPromise();
-    return status;
+  get(path2Send: string = 'usr1') {
+    const gson = {
+      path: path2Send
+    };
+    // return  this.rest.doGet('file', gson);
+    window.open(this.rest.endPoint + 'file?path=' + path2Send);
   }
+
 }

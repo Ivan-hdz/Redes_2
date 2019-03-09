@@ -1,15 +1,18 @@
-<div class="toolbox-container">
+<div  id="file_drop" dropzone="copy"  class="toolbox-container">
 
   <div>
-    <app-container (onDirOpened)="actualDirectory = $event" [directory-object]="actualDirectory"></app-container>
+    <app-container (onDirOpened)="getDirectory($event.path)" [directory-object]="actualDirectory"></app-container>
   </div>
   <div class="toolbox">
-    <div  (click)="goBack()" class="my-btn ">
+    <div class="my-btn" id="upload_btn">
+      <mat-icon>cloud_upload</mat-icon>
+    </div>
+    <div (click)="createFolder()" class="my-btn">
+      <mat-icon>create_new_folder</mat-icon>
+    </div>
+    <div *ngIf="actualDirectory.parent !== ''" (click)="goBack()" class="my-btn">
       <mat-icon>arrow_upward</mat-icon>
       <mat-icon>folder</mat-icon>
-    </div>
-    <div class="my-btn">
-      <mat-icon>cloud_upload</mat-icon>
     </div>
   </div>
 </div>

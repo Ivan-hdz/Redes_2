@@ -1,29 +1,37 @@
 import { Injectable } from '@angular/core';
 import {Directory} from '../classes/Directory';
 import {RESTService} from '../../shared/services/rest.service';
-import {Socket} from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DirectoryService {
-  private uploadStatus = this.socket.fromEvent<boolean>('uploadStatus');
-  constructor(private rest: RESTService, private socket: Socket) { }
-  async rename(path: string, newName: string) {
-    return await this.rest.doPatch<boolean>('directory', path, newName);
+  public ROOT = 'usr1';
+  constructor(private rest: RESTService) {
   }
-  async delete(path: string) {
-    return await this.rest.doDelete<boolean>('directory', path);
+  async rename(path2Send: string, newPath2Send: string) {
+    const toSend = {
+      path: path2Send,
+      newPath: newPath2Send
+    };
+    return await this.rest.doPatch<boolean>('directory', toSend);
   }
-  async post(path: string) {
-    return await this.rest.doPost<boolean>('directory', path);
+  async delete(path2Send: string) {
+    const gson = {
+      path: path2Send
+    };
+    return  this.rest.doDelete<Directory>('directory', gson);
   }
-  async get(path: string) {
-    return await this.rest.doGet<Directory>(path);
+  async post(pathComp: string) {
+    const toSend = {
+      path: pathComp
+    };
+    return await this.rest.doPost<boolean>('directory', toSend);
   }
-  async upload(directory: any) {
-    this.socket.emit('uploadDirectory', directory);
-    const status = await this.uploadStatus.toPromise();
-    return status;
+  get(path2Send: string = 'usr1') {
+    const gson = {
+      path: path2Send
+    };
+    return  this.rest.doGet<Directory>('directory', gson);
   }
 }

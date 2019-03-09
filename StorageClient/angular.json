@@ -29,7 +29,10 @@
             "styles": [
               "src/styles.styl"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/socketio-file-upload/client.js",
+              "node_modules/socket.io-client/dist/socket.io.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
