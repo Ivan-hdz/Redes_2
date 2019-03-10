@@ -1,0 +1,24 @@
+.margin-10 {
+  margin: 10px;
+}
+.input {
+  width: 50%;
+}
+.materia-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+}
+.materia-form mat-form-field {
+  margin-left: 10px;
+  width: 40%;
+}
+.materia-form button {
+  font-size: 16px;
+  margin-left: 10px;
+  align-self: center;
+}
+table {
+  width: 80%;
+}

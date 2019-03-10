@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f9f9f9 }
+* {
+  font-family: "Roboto Condensed";
+}
+hr{
+  background-color: black;
+  border: 1px solid cornflowerblue;
+  width: 40%;
+
+}
+mat-form-field {
+  width: 30%;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;;
+}
+
+.btn_array {
+  display: flex;
+  flex-direction: row;
+}
+
