@@ -1,0 +1,11 @@
+.idea
+.idea/**
+.idea/*
+node_modules
+node_modules/*
+node_modules/**
+src/*.js
+dist
+dist/*
+dist/**
+src/**/*.js
