@@ -17,7 +17,7 @@ export class GrupoService {
   uploadToServer() {
   }
   remove(grupoName: string) {
-    for (const g of this.grupos) {
+    for (let g of this.grupos) {
       if (g.nombre === grupoName) {
         g = null;
       }
