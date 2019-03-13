@@ -1,0 +1,10 @@
+<div class="page">
+  <div class="sender">
+    <app-message-sender [topic]="router.getStringAfterLastSlash()"></app-message-sender>
+  </div>
+  <div class="pool">
+    <app-message-sender class="dummy"></app-message-sender>
+    <!-- SIEMPRE DEBE DE IR LA ETIQUERA DE ARRIBA ^ -->
+    <app-message-container></app-message-container>
+  </div>
+</div>

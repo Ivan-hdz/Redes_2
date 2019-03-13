@@ -1,12 +1,19 @@
-<div class="message-cont">
-  <div>
-    <img [src]="message.urlFoto">
-  </div>
-  <div>
-    <h2>{{message.autor}}</h2>
-    <h3>{{message.fecha}} a las {{message.hora}}</h3>
-    <p>
-      {{message.cuerpo}}
-    </p>
-  </div>
-</div>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>{{message.autor}}</mat-card-title>
+    <mat-card-subtitle>{{message.fecha}} a las {{message.hora}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="message-cont">
+      <div class="img-div">
+        <img class="img" [src]="message.urlFoto">
+      </div>
+      <div class="txt-div">
+        <p>
+          {{message.cuerpo}}
+        </p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

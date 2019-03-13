@@ -7,9 +7,10 @@ import { MessageSenderComponent } from './components/message-sender/message-send
 import { TopicContainerComponent } from './components/topic-container/topic-container.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
 import {SharedModule} from "../shared/shared.module";
+import { TopicComponent } from './components/topic/topic.component';
 
 @NgModule({
-  declarations: [MessageContainerComponent, MessageSenderComponent, TopicContainerComponent, MainContainerComponent],
+  declarations: [MessageContainerComponent, MessageSenderComponent, TopicContainerComponent, MainContainerComponent, TopicComponent],
   imports: [
     CommonModule,
     ForoRoutingModule,

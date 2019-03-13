@@ -9,7 +9,7 @@ import {Mensaje} from '../../classes/Mensaje';
 export class MessageContainerComponent implements OnInit {
   @Input() message: Mensaje;
   constructor() {
-    if(!this.message) {
+    if (!this.message) {
       this.message = new Mensaje();
     }
   }

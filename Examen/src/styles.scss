@@ -8,12 +8,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 hr{
   background-color: #f9f9f9;
   border: 1px solid cornflowerblue;
-  width: 40%;
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
-}
-mat-form-field {
-  width: 30%;
-}
 .page {
   display: flex;
   flex-direction: column;

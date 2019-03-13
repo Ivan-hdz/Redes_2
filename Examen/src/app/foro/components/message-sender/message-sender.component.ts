@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Mensaje} from '../../classes/Mensaje';
 
 @Component({
@@ -8,7 +8,16 @@ import {Mensaje} from '../../classes/Mensaje';
 })
 export class MessageSenderComponent implements OnInit {
   @Output() messageSent: EventEmitter<Mensaje> = new EventEmitter<Mensaje>();
-  constructor() { }
+  @Input() topic: string;
+  @Input() username: string;
+  constructor() {
+    if(!this.topic) {
+      this.topic = 'Perros';
+    }
+    if(!this.username) {
+      this.username = 'Iván Hernández';
+    }
+  }
   onSend() {
     this.messageSent.emit(new Mensaje());
   }

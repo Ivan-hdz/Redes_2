@@ -1,7 +1,16 @@
-<div class="sender">
-  <mat-form-field class="textarea">
-    <textarea placeholder="Escribe algo..." matInput ></textarea>
-  </mat-form-field>
-  <button  mat-button><mat-icon color="accent">image</mat-icon></button>
-  <button mat-button><mat-icon color="warn">send</mat-icon></button>
-</div>
+<mat-card >
+  <mat-card-header>
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>Publicar en {{topic}}</mat-card-title>
+    <mat-card-subtitle>{{username}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div >
+      <mat-form-field color="accent" class="textarea">
+        <textarea placeholder="Escribe algo..." matInput ></textarea>
+      </mat-form-field>
+      <button  mat-flat-button >Subir <mat-icon color="warn">image</mat-icon></button>
+      <button mat-flat-button>Enviar <mat-icon color="warn">send</mat-icon></button>
+    </div>
+  </mat-card-content>
+</mat-card>

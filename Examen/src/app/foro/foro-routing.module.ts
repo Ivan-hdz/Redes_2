@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {MainContainerComponent} from './components/main-container/main-container.component';
-import {MessageSenderComponent} from './components/message-sender/message-sender.component';
+import {TopicComponent} from './components/topic/topic.component';
 
 const routes: Routes = [
-  {path: '', component: MessageSenderComponent}
+  {path: 'topic',
+    children : [
+      {
+        path: '',
+        component: MainContainerComponent
+      },
+      {
+      path: '**',
+      component: TopicComponent
+    }]},
+  {path: '', component: MainContainerComponent}
 ];
 
 @NgModule({
