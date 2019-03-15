@@ -11,11 +11,18 @@ import {UserService} from "../../../shared/services/user.service";
 })
 export class TopicComponent implements OnInit {
   isValidTopic = false;
+  topicInRoute: string;
   constructor(private router: RouterService, private topicServ: TopicService, private uService: UserService) {
-    this.topicServ.validateTopic(this.router.getStringAfterLastSlash()).subscribe((flag) => {
+    this.topicInRoute = router.getStringAfterLastSlash().toString();
+    this.topicServ.validateTopic(this.topicInRoute).subscribe((flag) => {
       this.isValidTopic = flag;
-      this.topicServ.switchTopic(this.router.getStringAfterLastSlash());
+      if(this.isValidTopic) {
+        this.topicServ.switchTopic(this.topicInRoute);
+      }
     });
+  }
+  goHome() {
+    this.router.navigate('/foro');
   }
   ngOnInit() {
   }

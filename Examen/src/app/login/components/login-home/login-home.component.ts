@@ -9,19 +9,17 @@ import {RouterService} from "../../../shared/services/router.service";
   styleUrls: ['./login-home.component.scss']
 })
 export class LoginHomeComponent implements OnInit {
-  fg: FormGroup;
-  constructor(private fb: FormBuilder, private uService: UserService, private router: RouterService) {
-    this.fg = this.fb.group({
-      username: ['', Validators.required]
-    });
+
+  constructor( private uService: UserService, private router: RouterService) {
+
   }
-  onSubmit() {
-    if (this.fg.valid) {
-      this.uService.setUsername(this.fg.get('username').value);
-      this.router.navigate('/foro');
-    } else {
-      return false;
-    }
+  onSubmit(usr: string = '') {
+      if(usr !== '') {
+        this.uService.setUsername(usr);
+        this.router.navigate('/foro');
+      } else {
+        return false;
+      }
   }
   ngOnInit() {
   }

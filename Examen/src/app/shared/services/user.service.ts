@@ -8,10 +8,14 @@ export class UserService {
   constructor() { }
 
   setUsername(n: string) {
-    this.username = n;
+    localStorage.setItem('username', n);
   }
   getUsername() {
-    return this.username;
+    if(localStorage.getItem('username')) {
+      return  localStorage.getItem('username');
+    } else {
+      return 'Anonimo';
+    }
   }
 
 }

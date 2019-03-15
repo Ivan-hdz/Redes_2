@@ -19,19 +19,16 @@ export class MainContainerComponent implements OnInit {
 
   constructor(public router: RouterService, private topicServ: TopicService) {
     this.dataSource = new MatTableDataSource();
-    this.getTopicNames();
-  }
-  private getTopicNames() {
-     this.topicServ.getTopicsName().subscribe((arr) => {
-       if (arr) {
-         this.dataSource = new MatTableDataSource(arr);
-       }
-     });
-  }
 
+  }
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.topicServ.getTopicsName().subscribe((arr) => {
+      if (arr) {
+        this.dataSource = new MatTableDataSource(arr);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    });
   }
   newTopic(topicName: string) {
     this.topicServ.newTopic(topicName);

@@ -20,7 +20,6 @@ const config: SocketIoConfig = { url: ENDPOINT, options: {} };
     SocketIoModule.forRoot(config)
   ],
   exports: [
-    FormsModule,
     MatIconModule,
     MatInputModule,
     MatButtonModule,
@@ -28,8 +27,7 @@ const config: SocketIoConfig = { url: ENDPOINT, options: {} };
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    SocketIoModule,
-    ReactiveFormsModule
+    SocketIoModule
   ],
   providers: [UserService, RouterService]
 })
