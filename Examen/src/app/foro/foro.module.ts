@@ -6,8 +6,9 @@ import { MessageContainerComponent } from './components/message-container/messag
 import { MessageSenderComponent } from './components/message-sender/message-sender.component';
 import { TopicContainerComponent } from './components/topic-container/topic-container.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from '../shared/shared.module';
 import { TopicComponent } from './components/topic/topic.component';
+import {TopicService} from './services/topic.service';
 
 @NgModule({
   declarations: [MessageContainerComponent, MessageSenderComponent, TopicContainerComponent, MainContainerComponent, TopicComponent],
@@ -15,6 +16,7 @@ import { TopicComponent } from './components/topic/topic.component';
     CommonModule,
     ForoRoutingModule,
     SharedModule
-  ]
+  ],
+  providers: [TopicService]
 })
 export class ForoModule { }

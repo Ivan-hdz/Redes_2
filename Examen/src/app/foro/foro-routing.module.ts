@@ -9,11 +9,11 @@ const routes: Routes = [
       {
         path: '',
         component: MainContainerComponent
-      },
-      {
-      path: '**',
-      component: TopicComponent
-    }]},
+      }, {
+        path: '**',
+        component: TopicComponent
+      }
+      ]},
   {path: '', component: MainContainerComponent}
 ];
 

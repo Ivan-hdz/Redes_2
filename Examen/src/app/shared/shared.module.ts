@@ -10,9 +10,15 @@ import {
   MatTableModule
 } from '@angular/material';
 import {RouterService} from './services/router.service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import {ENDPOINT} from '../../environments/environment';
 
+const config: SocketIoConfig = { url: ENDPOINT, options: {} };
 @NgModule({
   declarations: [],
+  imports: [
+    SocketIoModule.forRoot(config)
+  ],
   exports: [
     FormsModule,
     MatIconModule,
@@ -22,6 +28,7 @@ import {RouterService} from './services/router.service';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    SocketIoModule,
     ReactiveFormsModule
   ],
   providers: [UserService, RouterService]

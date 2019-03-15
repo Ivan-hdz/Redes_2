@@ -3,6 +3,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Topic} from '../../classes/Topic';
 import {Mensaje} from '../../classes/Mensaje';
 import {RouterService} from '../../../shared/services/router.service';
+import {TopicService} from '../../services/topic.service';
 
 @Component({
   selector: 'app-main-container',
@@ -10,30 +11,31 @@ import {RouterService} from '../../../shared/services/router.service';
   styleUrls: ['./main-container.component.scss']
 })
 export class MainContainerComponent implements OnInit {
-  displayedColumns: string[] = ['nombre', 'num_mensajes'];
-  dataSource: MatTableDataSource<Topic>;
+  displayedColumns: string[] = ['nombre'];
+  dataSource: MatTableDataSource<string>;
   BASE_TOPIC_URL = '/foro/topic/';
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public router: RouterService) {
-    // Create 100 users
-    const topics = [new Topic('Abeja'), new Topic('Burro'), new Topic('Delfin'), new Topic('Casa')];
-    topics[0].mensajes.push(new Mensaje());
-    topics[0].mensajes.push(new Mensaje());
-    topics[0].mensajes.push(new Mensaje());
-    topics[0].mensajes.push(new Mensaje());
-    topics[1].mensajes.push(new Mensaje());
-    topics[1].mensajes.push(new Mensaje());
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(topics);
+  constructor(public router: RouterService, private topicServ: TopicService) {
+    this.dataSource = new MatTableDataSource();
+    this.getTopicNames();
+  }
+  private getTopicNames() {
+     this.topicServ.getTopicsName().subscribe((arr) => {
+       if (arr) {
+         this.dataSource = new MatTableDataSource(arr);
+       }
+     });
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
+  newTopic(topicName: string) {
+    this.topicServ.newTopic(topicName);
+  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

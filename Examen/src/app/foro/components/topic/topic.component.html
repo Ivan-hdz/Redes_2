@@ -1,10 +1,13 @@
-<div class="page">
-  <div class="sender">
-    <app-message-sender [topic]="router.getStringAfterLastSlash()"></app-message-sender>
+<div *ngIf="isValidTopic then page"></div>
+<ng-template #page>
+  <div class="page" >
+
+    <div style="flex-direction: column-reverse" class="pool" *ngFor="let msg of topicServ.getMessagesObservable() | async">
+      <app-message-container [message]="msg"></app-message-container>
+    </div>
+    <div class="sender">
+      <app-message-sender [username]="uService.getUsername()" [topic]="router.getStringAfterLastSlash()"></app-message-sender>
+    </div>
   </div>
-  <div class="pool">
-    <app-message-sender class="dummy"></app-message-sender>
-    <!-- SIEMPRE DEBE DE IR LA ETIQUERA DE ARRIBA ^ -->
-    <app-message-container></app-message-container>
-  </div>
-</div>
+</ng-template>
+

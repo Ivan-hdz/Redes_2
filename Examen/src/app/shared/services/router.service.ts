@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class RouterService {
   }
   getStringAfterLastSlash(): string {
     const buff = this.router.url.split('/');
-    return buff[buff.length - 1];
+    const str = decodeURI(buff[buff.length - 1]);
+    return str;
   }
 
 }
