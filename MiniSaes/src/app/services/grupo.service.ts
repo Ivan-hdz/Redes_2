@@ -1,33 +1,26 @@
 import { Injectable } from '@angular/core';
 import {Grupo} from '../classes/Grupo';
+import {Socket} from 'ngx-socket-io';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GrupoService {
-  grupos: Grupo[];
-  constructor() {
-    this.grupos = new Array<Grupo>();
+
+  private grupo$: Observable<Grupo> = this.socket.fromEvent('getGrupo');
+  private grupos$: Observable<Grupo[]> = this.socket.fromEvent('getAllGrupo');
+  constructor(private socket: Socket) {
   }
-  add(g: Grupo) {
-    this.grupos.push(g);
+  new(g: Grupo) {
+    this.socket.emit('newGrupo', g);
   }
-  downloadFromServer() {
+  getOne(id: string): Observable<Grupo> {
+    this.socket.emit('getGrupo', id);
+    return this.grupo$;
   }
-  uploadToServer() {
-  }
-  remove(grupoName: string) {
-    for (let g of this.grupos) {
-      if (g.nombre === grupoName) {
-        g = null;
-      }
-    }
-  }
-  get(grupoName: string) {
-    for (const g of this.grupos) {
-      if (g.nombre === grupoName) {
-        return g;
-      }
-    }
+  getAll(): Observable<Grupo[]> {
+    this.socket.emit('getAllGrupo');
+    return this.grupos$;
   }
 }

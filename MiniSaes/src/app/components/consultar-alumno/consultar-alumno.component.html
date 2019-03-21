@@ -1,0 +1,107 @@
+
+<div class="page">
+  <h1>Consultar</h1>
+  <label><h2>Alumnos Inscritos</h2> <hr></label>
+  <mat-form-field>
+    <mat-select (valueChange)="onAlumnoSelected($event)"  placeholder="Seleccione un alumno" matInput >
+      <mat-option  [value]="alumno" *ngFor="let alumno of alumnos$| async">
+        {{alumno.nombre + ' ' + alumno.pApellido + ' ' + alumno.sApellido}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <label><h2>Ver Información de Alumno </h2> <hr></label>
+  <mat-form-field>
+    <input required [value]="alumnoSelected.id" disabled placeholder="Número de boleta" matInput type="number">
+  </mat-form-field>
+  <mat-form-field>
+    <input required [value]="alumnoSelected.nombre" disabled placeholder="Nombre" matInput type="text">
+  </mat-form-field>
+  <mat-form-field>
+    <input required [value]="alumnoSelected.pApellido" disabled placeholder="Primer apellido" matInput type="text">
+  </mat-form-field>
+  <mat-form-field>
+    <input required [value]="alumnoSelected.sApellido" disabled placeholder="Segundo apellido" matInput type="text">
+  </mat-form-field>
+  <img  [src]="alumnoSelected.urlFoto" width="240" height="240" />
+  <label><h2>Ver Horario de Grupo </h2> <hr></label>
+  <table #table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="nombreMateria">
+      <th mat-header-cell *matHeaderCellDef>Nombre de la materia</th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="profesor">
+      <th mat-header-cell *matHeaderCellDef> Nombre de profesor </th>
+      <td mat-cell *matCellDef="let element"> {{element.profesor}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="lunes">
+      <th mat-header-cell *matHeaderCellDef> Lunes </th>
+      <td mat-cell *matCellDef="let element"> {{element.horario.lunes}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="martes">
+      <th mat-header-cell *matHeaderCellDef> Martes </th>
+      <td mat-cell *matCellDef="let element"> {{element.horario.martes}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="miercoles">
+      <th mat-header-cell *matHeaderCellDef> Miercoles </th>
+      <td mat-cell *matCellDef="let element"> {{element.horario.miercoles}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="jueves">
+      <th mat-header-cell *matHeaderCellDef> Jueves </th>
+      <td mat-cell *matCellDef="let element"> {{element.horario.jueves}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="viernes">
+      <th mat-header-cell *matHeaderCellDef> Viernes </th>
+      <td mat-cell *matCellDef="let element"> {{element.horario.viernes}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <label><h2>Ver Calificaciones</h2> <hr></label>
+  <table #table2 mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="nombreMateria">
+      <th mat-header-cell *matHeaderCellDef>Nombre de la materia</th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="1er">
+      <th mat-header-cell *matHeaderCellDef>1er Parcial</th>
+      <td mat-cell *matCellDef="let element"> {{element.primer}} </td>
+    </ng-container>
+    <ng-container matColumnDef="2do">
+      <th mat-header-cell *matHeaderCellDef>2do Parcial</th>
+      <td mat-cell *matCellDef="let element"> {{element.segundo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="3er">
+      <th mat-header-cell *matHeaderCellDef>3er Parcial</th>
+      <td mat-cell *matCellDef="let element"> {{element.tercer}} </td>
+    </ng-container>
+    <ng-container matColumnDef="final">
+      <th mat-header-cell *matHeaderCellDef>Final</th>
+      <td mat-cell *matCellDef="let element"> {{element.final}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columsx2"></tr>
+    <tr mat-row *matRowDef="let row; columns: columsx2;"></tr>
+  </table>
+  <div class="btn_array">
+    <button class="margin-10" (click)="router.goHorarioHome()" mat-flat-button color="warn">Regresar</button>
+  </div>
+</div>

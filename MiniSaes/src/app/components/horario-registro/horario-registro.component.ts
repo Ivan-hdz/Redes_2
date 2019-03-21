@@ -32,7 +32,8 @@ export class HorarioRegistroComponent implements OnInit {
     }
   }
   guardarHorario() {
-      this.grupoServ.add(this.grupo);
+      this.grupoServ.new(this.grupo);
+      alert('¡Grupo creado!');
       this.router.goHorarioHome();
   }
 

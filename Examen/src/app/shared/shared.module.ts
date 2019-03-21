@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {UserService} from './services/user.service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatCardModule,
@@ -12,12 +11,17 @@ import {
 import {RouterService} from './services/router.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import {ENDPOINT} from '../../environments/environment';
+import { Error404Component } from './components/error404/error404.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const config: SocketIoConfig = { url: ENDPOINT, options: {} };
 @NgModule({
-  declarations: [],
+  declarations: [Error404Component, LoadingComponent],
   imports: [
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
   ],
   exports: [
     MatIconModule,
@@ -27,7 +31,9 @@ const config: SocketIoConfig = { url: ENDPOINT, options: {} };
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    SocketIoModule
+    SocketIoModule,
+    Error404Component,
+    LoadingComponent
   ],
   providers: [UserService, RouterService]
 })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RouterService} from '../../services/router.service';
+import {GrupoService} from '../../services/grupo.service';
 
 @Component({
   selector: 'app-horario',
@@ -8,7 +9,7 @@ import {RouterService} from '../../services/router.service';
 })
 export class HorarioComponent implements OnInit {
 
-  constructor(public router: RouterService) { }
+  constructor(public router: RouterService, private gpServ: GrupoService) { }
 
   ngOnInit() {
   }

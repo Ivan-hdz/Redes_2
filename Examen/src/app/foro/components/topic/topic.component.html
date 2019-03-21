@@ -1,4 +1,4 @@
-<div *ngIf="isValidTopic then page"></div>
+<div *ngIf="isValidTopic then page; else loading"></div>
 <ng-template #page>
   <div class="page" >
     <div>
@@ -14,5 +14,8 @@
       <button (click)="goHome()" mat-flat-button color="warn"><mat-icon>home</mat-icon></button>
     </div>
   </div>
+</ng-template>
+<ng-template #loading>
+  <app-loading></app-loading>
 </ng-template>
 

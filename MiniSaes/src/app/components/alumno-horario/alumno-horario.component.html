@@ -1,0 +1,24 @@
+
+<div class="page">
+  <h1>Inscribir Alumno en un Horario</h1>
+  <label><h2>Alumnos Inscritos</h2> <hr></label>
+  <mat-form-field>
+    <mat-select required [(ngModel)]="alumnoSelected"  placeholder="Seleccione un alumno" matInput >
+      <mat-option  [value]="alumno" *ngFor="let alumno of alumnos$| async">
+        {{alumno.nombre + ' ' + alumno.pApellido + ' ' + alumno.sApellido}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <label><h2>Grupos Registrados</h2> <hr></label>
+  <mat-form-field>
+    <mat-select required [(ngModel)]="grupoSelected"  placeholder="Seleccione un grupo" matInput >
+      <mat-option [value]="grupo" *ngFor="let grupo of grupos$ | async">
+        {{grupo.id}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="btn_array">
+    <button class="margin-10" (click)="linkAlumnoHorario()"  mat-flat-button color="primary">Inscribir</button>
+    <button class="margin-10" (click)="router.goHorarioHome()" mat-flat-button color="warn">Cancelar</button>
+  </div>
+</div>

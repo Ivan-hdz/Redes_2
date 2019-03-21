@@ -22,6 +22,9 @@ export class MainContainerComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.refresh();
+  }
+  refresh() {
     this.topicServ.getTopicsName().subscribe((arr) => {
       if (arr) {
         this.dataSource = new MatTableDataSource(arr);
@@ -32,6 +35,7 @@ export class MainContainerComponent implements OnInit {
   }
   newTopic(topicName: string) {
     this.topicServ.newTopic(topicName);
+    this.refresh();
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

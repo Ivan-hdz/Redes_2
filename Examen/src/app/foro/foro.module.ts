@@ -8,6 +8,8 @@ import { MainContainerComponent } from './components/main-container/main-contain
 import {SharedModule} from '../shared/shared.module';
 import { TopicComponent } from './components/topic/topic.component';
 import {TopicService} from './services/topic.service';
+import {Error404Component} from '../shared/components/error404/error404.component';
+import {LoadingComponent} from '../shared/components/loading/loading.component';
 
 @NgModule({
   declarations: [MessageContainerComponent, MessageSenderComponent, MainContainerComponent, TopicComponent],

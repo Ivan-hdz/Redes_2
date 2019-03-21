@@ -1,10 +1,10 @@
 import {Materia} from './Materia';
 
 export class Grupo {
-  nombre: string;
+  id: string;
   materias: Materia[];
   constructor() {
-    this.nombre = '';
+    this.id = '';
     this.materias = new Array<Materia>();
   }
 }

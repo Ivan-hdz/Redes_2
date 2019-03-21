@@ -2,22 +2,22 @@
 <div class="page">
   <h1>Inscripción</h1>
   <mat-form-field>
-    <input placeholder="Número de boleta" matInput type="number">
+    <input required [(ngModel)]="alumnoToUpload.id" placeholder="Número de boleta" matInput type="number">
   </mat-form-field>
   <mat-form-field>
-    <input placeholder="Nombre" matInput type="text">
+    <input required [(ngModel)]="alumnoToUpload.nombre" placeholder="Nombre" matInput type="text">
   </mat-form-field>
   <mat-form-field>
-    <input placeholder="Primer apellido" matInput type="text">
+    <input required [(ngModel)]="alumnoToUpload.pApellido" placeholder="Primer apellido" matInput type="text">
   </mat-form-field>
   <mat-form-field>
-    <input placeholder="Segundo apellido" matInput type="text">
+    <input required [(ngModel)]="alumnoToUpload.sApellido" placeholder="Segundo apellido" matInput type="text">
   </mat-form-field>
   <mat-form-field>
-    <input placeholder="URL de foto" matInput type="text">
+    <input required [(ngModel)]="alumnoToUpload.urlFoto" placeholder="URL de foto" matInput type="text">
   </mat-form-field>
   <div class="btn_array">
-    <button class="margin-10"  mat-flat-button color="primary">Inscribir</button>
+    <button class="margin-10" (click)="onSubmit()"  mat-flat-button color="primary">Inscribir</button>
     <button class="margin-10" (click)="router.goHome()" mat-flat-button color="warn">Cancelar</button>
   </div>
 </div>

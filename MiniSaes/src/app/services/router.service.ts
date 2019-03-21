@@ -7,6 +7,9 @@ import {Router} from '@angular/router';
 export class RouterService {
 
   constructor(private router: Router) { }
+  goConsultarAlumno(){
+    this.router.navigate(['/consultar-alumno']);
+  }
   goHome() {
     this.router.navigate(['/']);
   }
@@ -18,5 +21,8 @@ export class RouterService {
   }
   goHorarioRegistro() {
     this.router.navigate(['/horario-registro']);
+  }
+  goAkumnoHorario() {
+    this.router.navigate(['/alumno-horario']);
   }
 }

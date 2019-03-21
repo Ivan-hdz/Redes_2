@@ -1,13 +1,11 @@
 import {HorarioMateria} from './HorarioMateria';
 
 export class Materia {
-  idMateria: number;
-  nombreMateria: string;
+  nombre: string;
   profesor: string;
   horario: HorarioMateria;
   constructor() {
-    this.idMateria = 0;
-    this.nombreMateria = '';
+    this.nombre = '';
     this.profesor = '';
     this.horario = new HorarioMateria();
   }

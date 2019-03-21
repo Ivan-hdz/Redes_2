@@ -4,7 +4,7 @@ import {MyFile} from '../../classes/MyFile';
 import {DirectoryService} from '../../services/directory.service';
 import {FileService} from '../../services/file.service';
 
-declare const SocketIOFileUpload: any;
+odeclare const SocketIOFileUpload: any;
 declare const io: any;
 @Component({
   selector: 'app-toolbox',
@@ -40,7 +40,7 @@ export class ToolboxComponent implements OnInit {
       return false;
     }
   }
-  ngOnInit() {
+  ngOnInit() { 
       this.initSocket();
   }
   initSocket() {
