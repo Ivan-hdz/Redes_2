@@ -15,4 +15,4 @@ export const environment = {
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 
-export const ENDPOINT = 'https://minisaes.mybluemix.net';
+export const ENDPOINT = 'http://localhost:8080';

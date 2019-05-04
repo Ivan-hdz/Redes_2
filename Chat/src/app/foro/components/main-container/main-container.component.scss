@@ -1,0 +1,45 @@
+
+.interes-card{
+  width: 78vw;
+}
+.set-width {
+  width: 80vw;
+}
+.new-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-self: center;
+}
+.new-form mat-form-field {
+  margin-left: 15px;
+}
+.list-cont {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+mat-form-field
+{
+  width: available;
+  margin-left: 15px;
+}
+h2 {
+  font-weight: normal;
+}
+table {
+  width: 100%;
+}
+
+
+
+td, th {
+  width: 25%;
+}
+td {
+  cursor: pointer;
+}
+button {
+  width: fit-content;
+  align-self: center;
+}
