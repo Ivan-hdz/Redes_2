@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../../../shared/services/user.service';
 import {RouterService} from '../../../shared/services/router.service';
-import {User} from "../../../foro/classes/User";
+import {User} from '../../../foro/classes/User';
+import {FORO_HOME_URL} from '../../../foro/values/routes';
 
 @Component({
   selector: 'app-login-home',
@@ -14,11 +15,11 @@ export class LoginHomeComponent implements OnInit {
 
   }
   onSubmit(usr: string = '') {
-      if(usr !== '') {
+      if (usr !== '') {
         const u = new User();
         u.username = usr;
         this.uService.setCurrentUser(u);
-        this.router.navigate('/foro');
+        this.router.navigate(FORO_HOME_URL);
       } else {
         return false;
       }

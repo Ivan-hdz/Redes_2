@@ -1,9 +1,6 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Mensaje} from '../../classes/Mensaje';
-import {errorComparator} from 'tslint/lib/verify/lintError';
 import {ENDPOINT} from '../../../../environments/environment';
-import {TopicService} from '../../services/topic.service';
-import {Topic} from '../../classes/Topic';
 
 declare const SocketIOFileUpload: any;
 declare const io: any;
@@ -14,18 +11,20 @@ declare const io: any;
 })
 export class MessageSenderComponent implements OnInit, OnDestroy {
   @Output() messageSent: EventEmitter<Mensaje> = new EventEmitter<Mensaje>();
-  @Input() topic: string;
+  @Input() recieverID: string;
   @Input() username: string;
+  @ViewChild('body') body: ElementRef;
   socket: any;
   status: string;
   siofu: any;
   loadingPhoto = false;
   public msgToPost: Mensaje;
-  constructor(private topicServ: TopicService) {
+
+  constructor() {
     this.msgToPost = new Mensaje();
     this.status = '';
-    if (!this.topic) {
-      this.topic = 'Perros';
+    if (!this.recieverID) {
+      this.recieverID = 'Perros';
     }
     if (!this.username) {
       this.username = 'Iván Hernández';
@@ -37,7 +36,8 @@ export class MessageSenderComponent implements OnInit, OnDestroy {
     this.msgToPost.autor = this.username;
     this.msgToPost.hora = d.getHours().toString() + ':' + d.getMinutes().toString() + ':' + d.getSeconds().toString();
     this.msgToPost.fecha = d.getDay().toString() + '/' + d.getMonth().toString() + '/' + d.getFullYear().toString();
-    this.topicServ.sendMessageToTopic(this.topic, this.msgToPost);
+    // this.topicServ.sendMessageToTopic(this.topic, this.msgToPost);
+    this.messageSent.emit(this.msgToPost);
     elem.value = '';
     this.msgToPost = new Mensaje();
   }
@@ -73,7 +73,8 @@ export class MessageSenderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.initSocket();
+     // this.initSocket();
+    this.body.nativeElement.value = '\u{1F600}';
   }
 
   ngOnDestroy(): void {

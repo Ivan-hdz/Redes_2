@@ -1,20 +1,22 @@
-.sender {
-  padding-top: 10px;
-  border-radius: 50px;
-  width: 80%;
-  padding-left: 5%;
-}
+@import "~@ctrl/ngx-emoji-mart/picker";
 .textarea {
-  width: 84%;
+  width: 85%;
 }
-.header-image{
-  background-image: url("~/assets/shareIcon.png");
-  background-size: cover;
-}
-img {
+.my-img {
   cursor: pointer;
-  margin-right: 10px;
+  width: 5%;
+  height: 5%;
+  margin-top: 20px;
+  margin-right: 25px;
 }
-.card-cont {
-
+.my-card {
+  width: auto;
+  height: auto;
+  border-radius: 50px;
+}
+.card-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

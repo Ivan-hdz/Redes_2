@@ -11,7 +11,7 @@ export class Mensaje {
     this.fecha = '';
     this.hora = '';
     this.cuerpo = '';
-    this.urlFoto = ENDPOINT + '/default/profile-icon.png';
+    this.urlFoto = '';
     /*
     this.fecha = '02/05/2019';
     this.cuerpo = 'Este es un ejemplo de texto';

@@ -1,17 +1,11 @@
-<mat-card >
-  <mat-card-header>
-    <div mat-card-avatar class="header-image"></div>
-    <mat-card-title>Publicar en {{topic}}</mat-card-title>
-    <mat-card-subtitle>{{username}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <div >
-      <img  id="upload_btn" src="{{msgToPost.urlFoto}}" width="200px">
+<mat-card class="my-card">
+  <mat-card-content class="card-content">
+      <img  id="upload_btn" class="my-img" src="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png">
       <mat-form-field color="accent" class="textarea">
         <textarea #body placeholder="Escribe algo..." matInput ></textarea>
       </mat-form-field>
-      <button (click)="onSend(body)" [disabled]="loadingPhoto" mat-flat-button>Enviar <mat-icon color="warn">send</mat-icon></button>
+
+    <button (click)="onSend(body)" [disabled]="loadingPhoto" mat-flat-button> <mat-icon color="warn">send</mat-icon></button>
       <h4>{{status}}</h4>
-    </div>
   </mat-card-content>
 </mat-card>
