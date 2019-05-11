@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+
+mat-panel-description {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+mat-panel-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.emoticon_container {
+  display: flex;
+  width: 100%;
+  max-height: 150px;
+  font-size: 30px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.emoticon {
+  cursor: pointer;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+mat-expansion-panel {
+  margin: 10px;
+  background-color: crimson;
+  border-radius: 10px;
+}

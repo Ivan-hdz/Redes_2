@@ -1,0 +1,14 @@
+<mat-expansion-panel [hideToggle]="true">
+  <mat-expansion-panel-header >
+    <mat-panel-description>
+      Emoticones
+      <mat-icon>{{emoticons[0]}}</mat-icon>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="emoticon_container">
+    <div (click)="emitSelectedEmoticon(code)" class="emoticon pointer not_selectable"
+         *ngFor="let code of emoticons">
+      {{code}}
+    </div>
+  </div>
+</mat-expansion-panel>

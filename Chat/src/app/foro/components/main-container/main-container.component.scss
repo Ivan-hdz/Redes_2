@@ -6,6 +6,14 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+.online {
+  background-color: green;
+  cursor: pointer;
+}
+.offline {
+  background-color: red;
+  cursor: pointer;
+}
 .linea {
   width: 1px;
   margin-right: 2px;

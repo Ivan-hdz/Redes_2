@@ -12,7 +12,7 @@ declare const io: any;
 export class MessageSenderComponent implements OnInit, OnDestroy {
   @Output() messageSent: EventEmitter<Mensaje> = new EventEmitter<Mensaje>();
   @Input() recieverID: string;
-  @Input() username: string;
+  @Input() fromID: string;
   @ViewChild('body') body: ElementRef;
   socket: any;
   status: string;
@@ -23,20 +23,13 @@ export class MessageSenderComponent implements OnInit, OnDestroy {
   constructor() {
     this.msgToPost = new Mensaje();
     this.status = '';
-    if (!this.recieverID) {
-      this.recieverID = 'Perros';
-    }
-    if (!this.username) {
-      this.username = 'Iván Hernández';
-    }
   }
   onSend(elem ) {
     const d = new Date();
     this.msgToPost.cuerpo = elem.value;
-    this.msgToPost.autor = this.username;
+    this.msgToPost.autor = this.fromID;
     this.msgToPost.hora = d.getHours().toString() + ':' + d.getMinutes().toString() + ':' + d.getSeconds().toString();
     this.msgToPost.fecha = d.getDay().toString() + '/' + d.getMonth().toString() + '/' + d.getFullYear().toString();
-    // this.topicServ.sendMessageToTopic(this.topic, this.msgToPost);
     this.messageSent.emit(this.msgToPost);
     elem.value = '';
     this.msgToPost = new Mensaje();
@@ -74,7 +67,6 @@ export class MessageSenderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
      // this.initSocket();
-    this.body.nativeElement.value = '\u{1F600}';
   }
 
   ngOnDestroy(): void {

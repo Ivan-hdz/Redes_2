@@ -6,10 +6,11 @@ import { MessageContainerComponent } from './components/message-container/messag
 import { MessageSenderComponent } from './components/message-sender/message-sender.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
 import {SharedModule} from '../shared/shared.module';
-import { PickerModule } from '@ctrl/ngx-emoji-mart'
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { EmoticonsComponent } from './components/message-sender/emoticons/emoticons.component'
 
 @NgModule({
-  declarations: [MessageContainerComponent, MessageSenderComponent, MainContainerComponent],
+  declarations: [MessageContainerComponent, MessageSenderComponent, MainContainerComponent, EmoticonsComponent],
   imports: [
     CommonModule,
     ForoRoutingModule,

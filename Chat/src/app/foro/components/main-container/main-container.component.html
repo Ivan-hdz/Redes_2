@@ -2,16 +2,17 @@
   <div class="users-container">
     <mat-card>
       <mat-card-header>
-        <mat-card-title >Usuarios Conectados</mat-card-title>
+        <div mat-card-avatar (click)="toggleStatus()" [ngClass]="status ? 'online' : 'offline'" ></div>
+        <mat-card-title >Usuario: {{usServ.getUsername()}}</mat-card-title>
+        <mat-card-subtitle>{{status ? 'Conectado':'Invisible'}}</mat-card-subtitle>
       </mat-card-header>
     </mat-card>
     <div *ngFor="let user of usServ.getOnlineUsers() | async">
-      <mat-card class="my-card">
-        <mat-card-content>{{user._username}}</mat-card-content>
+      <mat-card (click)="switchChat(user.id)" *ngIf="usServ.getCurrentUser().id !== user.id" class="my-card">
+        <mat-card-content>{{user.username}}</mat-card-content>
       </mat-card>
     </div>
   </div>
-  <div class="linea"></div>
   <div class="chat-container">
     <div class="messages-container" >
       <div *ngFor="let m of mensajes$ | async">
@@ -19,7 +20,7 @@
       </div>
     </div>
     <div class="sender-container">
-      <app-message-sender (messageSent)="mensajes.push($event)" recieverID="test" [username]="usServ.getUsername()"></app-message-sender>
+      <app-message-sender (messageSent)="usServ.send($event)" [recieverID]="currentChatID"  [fromID]="usServ.getCurrentUser().id"></app-message-sender>
     </div>
   </div>
 </div>

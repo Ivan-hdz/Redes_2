@@ -4,6 +4,7 @@ import {User} from '../../foro/classes/User';
 import {RouterService} from './router.service';
 import {Socket} from 'ngx-socket-io';
 import {LOGIN_HOME_URL} from '../../login/values/routes';
+import {Mensaje} from '../../foro/classes/Mensaje';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,14 @@ import {LOGIN_HOME_URL} from '../../login/values/routes';
 export class UserService {
   private username: string;
   private usersOnline$: Observable<User[]> = this.socket.fromEvent('activeUsers');
+  private inbox$: Observable<Mensaje> = this.socket.fromEvent('inbox');
   constructor(private router: RouterService, private socket: Socket) {
   }
   setCurrentUser(u: User) {
     localStorage.setItem('user', JSON.stringify(u));
   }
   connect() {
-    if(this.getCurrentUser().id !== '') {
+    if (this.getCurrentUser().id !== '') {
       this.disconnect();
     }
     this.socket.emit('connected', this.getCurrentUser().username);
@@ -45,5 +47,10 @@ export class UserService {
   getOnlineUsers(): Observable<User[]> {
     return this.usersOnline$;
   }
-
+  getGlobalInbox(): Observable<Mensaje> {
+    return this.inbox$;
+  }
+  send(msg: Mensaje) {
+    this.socket.emit('send', msg);
+  }
 }
