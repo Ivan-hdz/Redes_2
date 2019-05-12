@@ -1,5 +1,6 @@
 <div class="page">
   <div class="users-container">
+    <button (click)="goLogin()" mat-button color="accent">Cerrar Sesión</button>
     <mat-card>
       <mat-card-header>
         <div mat-card-avatar (click)="toggleStatus()" [ngClass]="status ? 'online' : 'offline'" ></div>
@@ -8,19 +9,24 @@
       </mat-card-header>
     </mat-card>
     <div *ngFor="let user of usServ.getOnlineUsers() | async">
-      <mat-card (click)="switchChat(user.id)" *ngIf="usServ.getCurrentUser().id !== user.id" class="my-card">
+      <mat-card (click)="switchChat(user)" *ngIf="usServ.getCurrentUser().id !== user.id" class="my-card">
         <mat-card-content>{{user.username}}</mat-card-content>
       </mat-card>
     </div>
   </div>
   <div class="chat-container">
-    <div class="messages-container" >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{userSelected}}</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+    <div  class="messages-container" >
       <div *ngFor="let m of mensajes$ | async">
-      <app-message-container  [message]="m"></app-message-container>
+        <app-message-container [fromSender]="usServ.getCurrentUser().id == m.autor"  [autor]="usernameMap.get(m.autor)" (load)="this.requestFocus()" [message]="m"></app-message-container>
       </div>
     </div>
     <div class="sender-container">
-      <app-message-sender (messageSent)="usServ.send($event)" [recieverID]="currentChatID"  [fromID]="usServ.getCurrentUser().id"></app-message-sender>
+      <app-message-sender (messageSent)="onMessageSent($event)" [recieverID]="currentChatID"  [fromID]="usServ.getCurrentUser().id"></app-message-sender>
     </div>
   </div>
 </div>

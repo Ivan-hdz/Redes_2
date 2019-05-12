@@ -28,6 +28,7 @@ export class MessageSenderComponent implements OnInit, OnDestroy {
     const d = new Date();
     this.msgToPost.cuerpo = elem.value;
     this.msgToPost.autor = this.fromID;
+    this.msgToPost.destinatario = this.recieverID;
     this.msgToPost.hora = d.getHours().toString() + ':' + d.getMinutes().toString() + ':' + d.getSeconds().toString();
     this.msgToPost.fecha = d.getDay().toString() + '/' + d.getMonth().toString() + '/' + d.getFullYear().toString();
     this.messageSent.emit(this.msgToPost);
@@ -66,7 +67,7 @@ export class MessageSenderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-     // this.initSocket();
+     this.initSocket();
   }
 
   ngOnDestroy(): void {
