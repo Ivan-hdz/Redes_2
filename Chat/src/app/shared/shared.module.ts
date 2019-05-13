@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {UserService} from './services/user.service';
 import {
+  MatBadgeModule,
   MatButtonModule,
   MatCardModule, MatExpansionModule,
   MatIconModule,
@@ -30,6 +31,7 @@ const config: SocketIoConfig = { url: ENDPOINT, options: {} };
     MatButtonModule,
     MatCardModule,
     MatTableModule,
+    MatBadgeModule,
     MatPaginatorModule,
     MatSortModule,
     SocketIoModule,

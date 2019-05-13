@@ -4,12 +4,10 @@
   </mat-card-header>
   <mat-card-content class="card-content">
     <app-emoticons (emojiSelected)="body.value = body.value + $event"></app-emoticons>
-
       <mat-form-field color="accent" class="textarea">
         <textarea #body placeholder="Escribe algo..." matInput ></textarea>
       </mat-form-field>
     <img  id="upload_btn"  class="my-img" src="assets/img_default.png">
     <button (click)="onSend(body)" [disabled]="loadingPhoto" mat-flat-button> <mat-icon color="warn">send</mat-icon></button>
-      <h4>{{status}}</h4>
   </mat-card-content>
 </mat-card>

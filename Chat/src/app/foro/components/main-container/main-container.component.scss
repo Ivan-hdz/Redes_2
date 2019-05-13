@@ -46,7 +46,7 @@
   width: auto;
   margin: 5px;
 }
-.my-card{
+.user-card{
   margin-top: 3px;
   margin-left: 5px;
   background-color: #2f3640;
@@ -54,6 +54,13 @@
   cursor: pointer;
   transition: background-color 0.8s;
 }
-.my-card:hover {
-  background-color: #353b48;
+.mat-badge.hide-text .mat-badge-content {
+  color: transparent;
 }
+.user-card:hover {
+  background-color: crimson;
+}
+.user-card-selected {
+  background-color: crimson;
+}
+

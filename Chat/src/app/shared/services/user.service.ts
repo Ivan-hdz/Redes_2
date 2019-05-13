@@ -5,6 +5,7 @@ import {RouterService} from './router.service';
 import {Socket} from 'ngx-socket-io';
 import {LOGIN_HOME_URL} from '../../login/values/routes';
 import {Mensaje} from '../../foro/classes/Mensaje';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
