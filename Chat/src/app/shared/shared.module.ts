@@ -31,7 +31,6 @@ const config: SocketIoConfig = { url: ENDPOINT, options: {} };
     MatButtonModule,
     MatCardModule,
     MatTableModule,
-    MatBadgeModule,
     MatPaginatorModule,
     MatSortModule,
     SocketIoModule,

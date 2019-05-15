@@ -11,9 +11,7 @@
     <div *ngFor="let user of userssWithTodos$ | async">
       <mat-card [ngClass]="user.id == currentChatID ? 'user-card-selected' : ''" class="user-card" (click)="switchChat(user)" *ngIf="usServ.getCurrentUser().id !== user.id" >
         <mat-card-content>
-          <span [matBadgeHidden]="recievedMap.get(currentChatID).disabled" matBadge="0" class="hide-text" matBadgeColor="warn" matBadgeOverlap="false">
-            {{user.username}}
-          </span>
+           {{user.username}}
         </mat-card-content>
       </mat-card>
     </div>

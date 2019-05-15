@@ -3,10 +3,9 @@ import {RouterService} from '../../../shared/services/router.service';
 import {UserService} from '../../../shared/services/user.service';
 import {User} from '../../classes/User';
 import {Mensaje} from '../../classes/Mensaje';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {LOGIN_HOME_URL} from '../../../login/values/routes';
 import {map} from 'rxjs/operators';
-import {MyBadge} from "../../classes/MyBadge";
 
 @Component({
   selector: 'app-main-container',
@@ -23,19 +22,17 @@ export class MainContainerComponent implements OnInit, OnDestroy {
   inboxByUser: Map<string, Mensaje[]>;
   currentChatID: string;
   usernameMap: Map<string, string>;
-  recievedMap: Map<string, MyBadge>;
    constructor( public router: RouterService, public usServ: UserService) {
     this.mensajes = [];
     this.mensajes$ = of(this.mensajes);
     this.status = true;
-    this.currentChatID = '';
+    this.currentChatID = 'todos';
     this.userSelected = '';
     this.inboxByUser = new Map<string, Mensaje[]>();
     this.usernameMap = new Map<string, string>();
-    this.recievedMap = new Map<string, MyBadge>();
     this.inboxByUser.set('todos', []);
 
-  }
+   }
   initConfig() {
     this.userssWithTodos$ = this.usServ.getOnlineUsers().pipe(map((arr: User[]) => {
       const todos = new User();
@@ -44,11 +41,9 @@ export class MainContainerComponent implements OnInit, OnDestroy {
       return [todos].concat(arr);
     }));
     this.usServ.connect();
-    this.recievedMap.set('todos', new MyBadge());
     this.usServ.getOnlineUsers().subscribe((usrs: User[]) => {
       for (const u of usrs) {
         this.usernameMap.set(u.id, u.username);
-        this.recievedMap.set(u.id, new MyBadge());
       }
     });
     // Mensaje recibido
@@ -60,11 +55,13 @@ export class MainContainerComponent implements OnInit, OnDestroy {
       } else {
         this.inboxByUser.set(msg.autor, [msg]);
       }
-      this.recievedMap.get(msg.autor).disabled = false;
+      if(msg.destinatario !== 'todos') {
+        alert('Mensaje recibido de ' + this.usernameMap.get(msg.autor));
+      }
     });
   }
   switchChat(user: User = null) {
-     if(user == null) {
+     if (user == null) {
        this.mensajes$ = of(this.inboxByUser.get('todos'));
        this.currentChatID = 'todos';
        this.userSelected = 'Todos';
@@ -87,14 +84,15 @@ export class MainContainerComponent implements OnInit, OnDestroy {
      }
   }
   goLogin() {
-    this.router.navigate(LOGIN_HOME_URL);
+     this.usServ.disconnect();
+     this.router.navigate(LOGIN_HOME_URL);
   }
   ngOnInit() {
     this.initConfig();
     this.switchChat();
   }
   onMessageSent(msg: Mensaje) {
-     if(msg.destinatario !== 'todos') {
+     if (msg.destinatario !== 'todos') {
        this.inboxByUser.get(msg.destinatario).push(msg);
      }
      this.usServ.send(msg);

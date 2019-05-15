@@ -1,6 +1,6 @@
 export class MyBadge {
-  disabled: boolean;
-  constructor() {
-    this.disabled = true;
+  hidden;
+  constructor(h: boolean = true) {
+    this.hidden = h;
   }
 }
