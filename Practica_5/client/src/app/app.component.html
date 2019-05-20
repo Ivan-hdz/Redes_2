@@ -1,0 +1,32 @@
+<h1>Práctica 5</h1>
+<div>
+  <h2>Alta</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label>
+      Nombre
+      <input required formControlName="name" type="text">
+    </label>
+    <label>
+      Descripción
+      <textarea required formControlName="description" type="text"></textarea>
+    </label>
+    <button [disabled]="!form.valid" type="submit">Registrar</button>
+  </form>
+</div>
+<!-- CONSULTAS -->
+<div>
+  <h2>Consulta / Editar / Eliminar</h2>
+  <div >
+    <label>
+      Nombre
+      <input (change)="noExiste = true" [(ngModel)]="nameToFind" required  type="text">
+    </label>
+    <button (click)="onSearch()" >Buscar</button>
+    <label>
+      Descripción
+      <textarea [(ngModel)]="descriptionToFind" required  type="text"></textarea>
+    </label>
+    <button [disabled]="noExiste" (click)="onSaveChanges(nameToFind, descriptionToFind)" >Guardar Cambios</button>
+    <button [disabled]="noExiste" (click)="onDelete()" >Eliminar</button>
+  </div>
+</div>
