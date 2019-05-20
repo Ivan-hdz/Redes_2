@@ -1,31 +1,34 @@
 <div class="page">
-  <mat-card class="interes-card">
-    <mat-card-header>
-      <mat-card-title>Chat</mat-card-title>
-      <mat-card-subtitle>Seleccione al usuario que desea enviarle el mensaje</mat-card-subtitle>
-    </mat-card-header>
-  </mat-card>
-  <div class="set-width ">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
-    </mat-form-field>
-
-    <div class="mat-elevation-z8">
-      <table  mat-table [dataSource]="dataSource" matSort>
-
-        <!-- ID Column -->
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuarios conectado </th>
-          <td (click)="router.navigate(BASE_TOPIC_URL + row)" mat-cell *matCellDef="let row"> {{row.username}} </td>
-        </ng-container>
-
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-        </tr>
-      </table>
-
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <div class="users-container">
+    <button (click)="goLogin()" mat-button color="accent">Cerrar Sesión</button>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar (click)="toggleStatus()" [ngClass]="status ? 'online' : 'offline'" ></div>
+        <mat-card-title >Usuario: {{usServ.getUsername()}}</mat-card-title>
+        <mat-card-subtitle>{{status ? 'Conectado':'Invisible'}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <div *ngFor="let user of userssWithTodos$ | async">
+      <mat-card [ngClass]="user.id == currentChatID ? 'user-card-selected' : ''" class="user-card" (click)="switchChat(user)" *ngIf="usServ.getCurrentUser().id !== user.id" >
+        <mat-card-content>
+           {{user.username}}
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="chat-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{userSelected}}</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+    <div  class="messages-container" >
+      <div *ngFor="let m of mensajes$ | async">
+        <app-message-container [fromSender]="usServ.getCurrentUser().id == m.autor"  [autor]="usernameMap.get(m.autor)" (load)="this.requestFocus()" [message]="m"></app-message-container>
+      </div>
+    </div>
+    <div class="sender-container">
+      <app-message-sender (messageSent)="onMessageSent($event)" [recieverID]="currentChatID"  [fromID]="usServ.getCurrentUser().id"></app-message-sender>
     </div>
   </div>
 </div>

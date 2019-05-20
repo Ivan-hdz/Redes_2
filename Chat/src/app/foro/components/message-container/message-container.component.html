@@ -1,13 +1,13 @@
-<mat-card>
+<mat-card [ngClass]="fromSender ? 'fromSender' : ''"  class="message-card">
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
-    <mat-card-title>{{message.autor}}</mat-card-title>
+    <mat-card-title>{{autor}}</mat-card-title>
     <mat-card-subtitle>{{message.fecha}} a las {{message.hora}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div class="message-cont">
-      <div class="img-div">
-        <img class="img" [src]="message.urlFoto">
+      <div *ngIf="message.urlFoto != ''" class="img-div">
+        <img class="img" [src]="message.urlFoto" >
       </div>
       <div class="txt-div">
         <p>

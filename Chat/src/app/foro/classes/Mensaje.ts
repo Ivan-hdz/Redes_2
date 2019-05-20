@@ -1,7 +1,7 @@
-import {ENDPOINT} from '../../../environments/environment';
 
 export class Mensaje {
   autor: string;
+  destinatario: string;
   fecha: string;
   hora: string;
   cuerpo: string;
@@ -11,12 +11,7 @@ export class Mensaje {
     this.fecha = '';
     this.hora = '';
     this.cuerpo = '';
-    this.urlFoto = ENDPOINT + '/default/profile-icon.png';
-    /*
-    this.fecha = '02/05/2019';
-    this.cuerpo = 'Este es un ejemplo de texto';
-    this.autor = 'Iván Hernández';
-    this.hora = '15:04';
-    this.urlFoto = 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png';*/
+    this.urlFoto = '';
+    this.destinatario = '';
   }
 }

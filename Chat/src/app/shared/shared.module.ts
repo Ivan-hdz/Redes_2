@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import {UserService} from './services/user.service';
 import {
+  MatBadgeModule,
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatExpansionModule,
   MatIconModule,
   MatInputModule,
   MatPaginatorModule, MatSortModule,
@@ -25,6 +26,7 @@ const config: SocketIoConfig = { url: ENDPOINT, options: {} };
   ],
   exports: [
     MatIconModule,
+    MatExpansionModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,

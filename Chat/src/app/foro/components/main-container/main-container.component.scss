@@ -1,45 +1,67 @@
-
-.interes-card{
-  width: 78vw;
-}
-.set-width {
-  width: 80vw;
-}
-.new-form {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-self: center;
-}
-.new-form mat-form-field {
-  margin-left: 15px;
-}
-.list-cont {
+.users-container {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  width: 30vw;
+  height: 99.5vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-mat-form-field
-{
-  width: available;
-  margin-left: 15px;
-}
-h2 {
-  font-weight: normal;
-}
-table {
-  width: 100%;
-}
-
-
-
-td, th {
-  width: 25%;
-}
-td {
+.online {
+  background-color: green;
   cursor: pointer;
 }
-button {
-  width: fit-content;
-  align-self: center;
+.offline {
+  background-color: red;
+  cursor: pointer;
 }
+.linea {
+  width: 1px;
+  margin-right: 2px;
+  margin-left: 2px;
+  height: 30vh;
+  border-radius: 20px;
+  background-color: whitesmoke;
+}
+.page {
+  flex-direction: row;
+  background-color: #141414;
+}
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 99.5vh;
+  width: 70vw;
+}
+.messages-container {
+  height: 84.5%;
+  width: 99.5%;
+  overflow-y: auto;
+  margin: 5px;
+  margin-top: 0px;
+}
+.messages-container * {
+}
+.sender-container {
+  height: auto;
+  width: auto;
+  margin: 5px;
+}
+.user-card{
+  margin-top: 3px;
+  margin-left: 5px;
+  background-color: #2f3640;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: background-color 0.8s;
+}
+.mat-badge.hide-text .mat-badge-content {
+  color: transparent;
+}
+.user-card:hover {
+  background-color: crimson;
+}
+.user-card-selected {
+  background-color: crimson;
+}
+
+

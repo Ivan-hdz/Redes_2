@@ -1,7 +1,7 @@
 <div  class="page">
   <h1>Bienvenido</h1>
   <mat-form-field>
-  <input required #usr placeholder="Nombre de usuario" matInput type="text">
+  <input (submit)="onSubmit(usr.value)" required #usr placeholder="Nombre de usuario" matInput type="text">
   </mat-form-field>
   <div class="btn_array">
     <button class="margin-10" (click)="onSubmit(usr.value)"  mat-flat-button color="primary">Entrar</button>

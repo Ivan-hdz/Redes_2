@@ -1,9 +1,6 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Mensaje} from '../../classes/Mensaje';
-import {errorComparator} from 'tslint/lib/verify/lintError';
 import {ENDPOINT} from '../../../../environments/environment';
-import {TopicService} from '../../services/topic.service';
-import {Topic} from '../../classes/Topic';
 
 declare const SocketIOFileUpload: any;
 declare const io: any;
@@ -14,30 +11,27 @@ declare const io: any;
 })
 export class MessageSenderComponent implements OnInit, OnDestroy {
   @Output() messageSent: EventEmitter<Mensaje> = new EventEmitter<Mensaje>();
-  @Input() topic: string;
-  @Input() username: string;
+  @Input() recieverID: string;
+  @Input() fromID: string;
+  @ViewChild('body') body: ElementRef;
   socket: any;
   status: string;
   siofu: any;
   loadingPhoto = false;
   public msgToPost: Mensaje;
-  constructor(private topicServ: TopicService) {
+
+  constructor() {
     this.msgToPost = new Mensaje();
     this.status = '';
-    if (!this.topic) {
-      this.topic = 'Perros';
-    }
-    if (!this.username) {
-      this.username = 'Iván Hernández';
-    }
   }
   onSend(elem ) {
     const d = new Date();
     this.msgToPost.cuerpo = elem.value;
-    this.msgToPost.autor = this.username;
+    this.msgToPost.autor = this.fromID;
+    this.msgToPost.destinatario = this.recieverID;
     this.msgToPost.hora = d.getHours().toString() + ':' + d.getMinutes().toString() + ':' + d.getSeconds().toString();
     this.msgToPost.fecha = d.getDay().toString() + '/' + d.getMonth().toString() + '/' + d.getFullYear().toString();
-    this.topicServ.sendMessageToTopic(this.topic, this.msgToPost);
+    this.messageSent.emit(this.msgToPost);
     elem.value = '';
     this.msgToPost = new Mensaje();
   }
@@ -73,7 +67,7 @@ export class MessageSenderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.initSocket();
+     this.initSocket();
   }
 
   ngOnDestroy(): void {
